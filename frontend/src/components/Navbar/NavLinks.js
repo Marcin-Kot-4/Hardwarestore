@@ -35,7 +35,7 @@ const NavLinks = () => {
                             {link.submenu && (
                                 <div>
                                     <div
-                                        className="absolute top-28 pt-1 hidden  group-hover:xl:block hover:xl:block">
+                                        className="absolute z-50 top-28 pt-1 hidden  group-hover:xl:block hover:xl:block">
                                         <div className="py-3">
                                             <div className="w-4 h-4 left-3 absolute mt-1 bg-m_gray rotate-45"></div>
                                         </div>

@@ -19,11 +19,6 @@ const Navbar = () => {
             {/* empty div for positioning */}
             <div className="xl:flex hidden w-2/12"></div>
             <ul className="h-12 xl:w-8/12 font-light text-base xl:flex justify-center hidden uppercase items-center font-[Roboto]">
-                <li>
-                    {/*<Link to={'/'} className="py-7 px-3 inline-block">*/}
-                    {/*    Home*/}
-                    {/*</Link>*/}
-                </li>
                 <NavLinks/>
             </ul>
             <div className="xl:flex hidden w-1/12 justify-end">
@@ -32,11 +27,6 @@ const Navbar = () => {
             </div>
             {/* --- Mobile navigation --- */}
             <ul className={`xl:hidden bg-white absolute w-full h-full bottom-0 py-24 duration-500 ${open ? 'left-0' : 'left-[-100%]'}`}>
-                <li>
-                    {/*<Link to={'/'} className="py-7 px-3 inline-block">*/}
-                    {/*    Home*/}
-                    {/*</Link>*/}
-                </li>
                 <NavLinks/>
                 <div className="py-5">
                     <ButtonPrimary title={'SALE'}/>
