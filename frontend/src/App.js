@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
+import Carousel from "./components/Carousel";
 
 // import Button from "./components/Button";
 
@@ -9,9 +10,7 @@ function App() {
         <section className="h-screen bg-white font-[Roboto] md:bg-top bg-center">
             <Header/>
             <Navbar/>
-            <div className="text-xl">
-                {/*<Button/>*/}
-            </div>
+            <Carousel/>
         </section>
     );
 }

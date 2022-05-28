@@ -123,7 +123,7 @@ export const links = [
     },
     {
         key: 3,
-        name: 'PODZESPOŁY KOMPUTEROWE',
+        name: 'PODZESPOŁY',
         submenu: true,
         sublinks: [
             {
@@ -184,7 +184,7 @@ export const links = [
     },
     {
         key: 4,
-        name: 'URZĄDZENIA PERYFERYJNE',
+        name: 'PERYFERIA',
         submenu: true,
         sublinks: [
             {

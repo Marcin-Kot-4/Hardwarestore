@@ -11,29 +11,31 @@ const NavLinks = () => {
             {
                 links.map((link) => (
                     <div key={link.key}>
-                        <div className="px-3 text-left md:cursor-pointer group">
+                        <div className="h-12 text-left xl:cursor-pointer group">
                             {/* Toggle subLinks on mobile devices */}
-                            <h1 className="py-7 font-light flex justify-between items-center md:pr-0 pr-5 group"
+                            <h1 className="h-12 hover:text-white hover:bg-black font-light flex justify-between items-center
+                             xl:pr-2 xl:pl-3 pl-5 pr-5 group group-hover:bg-black group-hover:text-white"
                                 onClick={() => {
                                     heading !== link.name ? setHeading(link.name) : setHeading("");
                                     setSubHeading("");
                                 }}>
                                 {link.name}
                                 {/* Mobile chevron */}
-                                <span className="text-xl md:hidden inline">
+                                <span className="text-xl xl:hidden inline">
                                     <ion-icon
                                         name={`${heading === link.name ? "chevron-up" : "chevron-down"}`}></ion-icon>
                                 </span>
                                 {/* Desktop chevron */}
                                 <span
-                                    className="text-lg md:mt-1 md:ml-2 md:block hidden group-hover:rotate-180 group-hover:-mt-2">
+                                    className="text-lg xl:mt-1 xl:ml-1 xl:block hidden group-hover:rotate-180 group-hover:-mt-2">
                                     <ion-icon
                                         name="chevron-down"></ion-icon>
                                 </span>
                             </h1>
                             {link.submenu && (
                                 <div>
-                                    <div className="absolute top-10 hidden group-hover:md:block hover:md:block">
+                                    <div
+                                        className="absolute top-28 pt-1 hidden  group-hover:xl:block hover:xl:block">
                                         <div className="py-3">
                                             <div className="w-4 h-4 left-3 absolute mt-1 bg-m_gray rotate-45"></div>
                                         </div>
@@ -58,7 +60,7 @@ const NavLinks = () => {
                         </div>
                         {/* Mobile dropdown menu */}
                         <div className={`
-                            ${heading === link.name ? 'md:hidden' : 'hidden'}
+                            ${heading === link.name ? 'xl:hidden' : 'hidden'}
                         `}>
                             {/* subLinks */}
                             {
@@ -71,15 +73,15 @@ const NavLinks = () => {
                                                     setSubHeading(sublinks.Head)
                                                     : setSubHeading("")
                                             }
-                                                className="py-4 pl-7 font-normal md:pr-0 pr-5 flex justify-between items-center">
+                                                className="py-4 pl-7 font-normal xl:pr-0 pr-5 flex justify-between items-center">
                                                 {sublinks.Head}
-                                                <span className="text-xl md:mt-1 md:ml-2 inline">
+                                                <span className="text-xl xl:mt-1 xl:ml-2 inline">
                                     <ion-icon
                                         name={`${subHeading === sublinks.Head ? "chevron-up" : "chevron-down"}`}></ion-icon>
                                 </span>
                                             </h1>
                                             <div className={`${
-                                                subHeading === sublinks.Head ? "md:hidden" : "hidden"
+                                                subHeading === sublinks.Head ? "xl:hidden" : "hidden"
                                             }`}>
                                                 {sublinks.sublink.map(sublink => (
                                                     <li className="py-3 pl-14">
