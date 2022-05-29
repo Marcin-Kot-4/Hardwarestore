@@ -4,8 +4,7 @@ import Header from "./components/Header/Header";
 import Slider from "./components/Slider/Slider";
 import Newsletter from "./components/Newsletter/Newsletter";
 import Footer from "./components/Footer/Footer";
-
-// import Button from "./components/Button";
+import CardSlider from "./components/CardSlider/CardSlider";
 
 function App() {
     return (
@@ -13,6 +12,7 @@ function App() {
             <Header/>
             <Navbar/>
             <Slider/>
+            <CardSlider/>
             <Newsletter/>
             <Footer/>
         </section>
