@@ -5,17 +5,26 @@ import Slider from "./components/Slider/Slider";
 import Newsletter from "./components/Newsletter/Newsletter";
 import Footer from "./components/Footer/Footer";
 import CardSlider from "./components/CardSlider/CardSlider";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import ErrorPage from "./ErrorPage";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 
 function App() {
     return (
-        <section className="h-screen bg-white font-[Roboto] md:bg-top bg-center">
+        <Router>
             <Header/>
             <Navbar/>
-            <Slider/>
-            <CardSlider/>
-            <Newsletter/>
+            <Routes>
+                <Route path="/" element={<><Slider/><CardSlider/><Newsletter/></>}/>
+                <Route path="/login" element={<><Login/><Newsletter/></>}/>
+                <Route path="/register" element={<><Register/></>}/>
+
+
+                <Route path="*" element={<ErrorPage/>}/>
+            </Routes>
             <Footer/>
-        </section>
+        </Router>
     );
 }
 
