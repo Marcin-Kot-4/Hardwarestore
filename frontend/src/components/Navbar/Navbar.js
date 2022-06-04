@@ -21,7 +21,7 @@ const Navbar = () => {
             <ul className="h-12 xl:w-8/12 font-light text-base xl:flex justify-center hidden uppercase items-center font-[Roboto]">
                 <NavLinks/>
             </ul>
-            <div className="xl:flex hidden w-1/12 justify-end">
+            <div className="xl:flex hidden w-1/12 justify-end font-[Roboto]">
                 <ButtonPrimary title={'SALE'}/>
                 <Button title={'POLECAMY'}/>
             </div>

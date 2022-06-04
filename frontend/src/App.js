@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import Products from "./components/Products/Products";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/" element={<><Slider/><CardSlider/><Newsletter/></>}/>
                 <Route path="/login" element={<><Login/><Newsletter/></>}/>
                 <Route path="/register" element={<><Register/></>}/>
+                <Route path="/category/business-laptops" element={<><Products categoryName="Laptopy" subCategoryName="Laptopy Biznesowe"/></>}/>
 
 
                 <Route path="*" element={<ErrorPage/>}/>
