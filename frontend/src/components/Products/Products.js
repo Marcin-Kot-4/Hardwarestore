@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Link} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
-const Products = (props) => {
-    const products = [
+const Products = () => {
+    const products = useMemo(() => [
         {
-            link: '/laptop-asus-asus-chromebook-flip',
+            link: '/laptop-asus-chromebook-flip',
             src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
             name: 'Laptop Asus ASUS Chromebook Flip',
             price: 2599,
@@ -52,9 +53,12 @@ const Products = (props) => {
             price: 10490,
             producer: 'Dell'
         }
-    ]
+    ], []);
 
-    const uniqueProducers = products.filter((value, index, self) =>
+    let {categoryName} = useParams();
+    let {subCategoryName} = useParams();
+
+    let uniqueProducers = products.filter((value, index, self) =>
             index === self.findIndex((t) => (
                 t.producer === value.producer
             ))
@@ -110,15 +114,16 @@ const Products = (props) => {
 
 
     const [filteredProducts, setFilteredProducts] = useState(products);
-
-    let minPrice = 0;
-    let maxPrice = 0;
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(0);
 
     const handleFilters = (filters, producers) => {
         // console.log(filters); // array of producers that are checked
 
         if (filters.length === 0) {
             setFilteredProducts(products);
+            setNewFilteredProducts(products);
+
             return 0;
         }
 
@@ -139,49 +144,196 @@ const Products = (props) => {
         setFilters(newFilters);
         setFilteredProducts(newProducts);
         setNewFilteredProducts(newProducts);
-
-        if (minPrice > 0) {
-            handleMinPrice(minPrice);
-        }
-
-        if (maxPrice > 0) {
-            handleMaxPrice(maxPrice);
-        }
     }
 
     const [newFilteredProducts, setNewFilteredProducts] = useState(filteredProducts);
+    const [newProducerQuantityProducts, setNewProducerQuantityProducts] = useState(products);
 
-    const handleMinPrice = (minPrice) => {
-        if (minPrice > 0) {
-            let newProducts = [];
+    // const handlePriceFilter = (minPrice, maxPrice) => {
+    //     console.log(minPrice);
+    //     console.log(maxPrice);
+    //
+    //     if (minPrice > 0) {
+    //         setMinPrice(minPrice);
+    //     }
+    //     if (maxPrice > 0) {
+    //         setMaxPrice(maxPrice);
+    //     }
+    //
+    //     if (minPrice > 0 && maxPrice > minPrice) {
+    //         let productsFilteredByPrice = [];
+    //         let finalProductsFilteredByPrice = [];
+    //         let producerQuantity = [];
+    //         let finalProducerQuantity = [];
+    //
+    //         for (let i = 0; i < filteredProducts.length; i++) {
+    //             if (filteredProducts[i].price >= minPrice) {
+    //                 productsFilteredByPrice.push(filteredProducts[i]);
+    //             }
+    //         }
+    //
+    //         for (let i = 0; i < productsFilteredByPrice.length; i++) {
+    //             if (productsFilteredByPrice[i].price <= maxPrice) {
+    //                 finalProductsFilteredByPrice.push(productsFilteredByPrice[i]);
+    //             }
+    //         }
+    //
+    //         for (let i = 0; i < products.length; i++) {
+    //             if (products[i].price >= minPrice) {
+    //                 producerQuantity.push(products[i]);
+    //             }
+    //         }
+    //
+    //         for (let i = 0; i < producerQuantity.length; i++) {
+    //             if (producerQuantity[i].price <= maxPrice) {
+    //                 finalProducerQuantity.push(producerQuantity[i]);
+    //             }
+    //         }
+    //
+    //         setNewFilteredProducts(finalProductsFilteredByPrice);
+    //         setNewProducerQuantityProducts(finalProducerQuantity);
+    //
+    //         return 0;
+    //     }
+    //
+    //     if (minPrice > 0 && maxPrice <= 0) {
+    //         let finalProductsFilteredByPrice = [];
+    //         let finalProducerQuantity = [];
+    //
+    //         for (let i = 0; i < filteredProducts.length; i++) {
+    //             if (filteredProducts[i].price >= minPrice) {
+    //                 finalProductsFilteredByPrice.push(filteredProducts[i]);
+    //             }
+    //         }
+    //
+    //         for (let i = 0; i < products.length; i++) {
+    //             if (products[i].price >= minPrice) {
+    //                 finalProducerQuantity.push(products[i]);
+    //             }
+    //         }
+    //
+    //         setNewFilteredProducts(finalProductsFilteredByPrice);
+    //         setNewProducerQuantityProducts(finalProducerQuantity);
+    //         return 0;
+    //     }
+    //
+    //     if (maxPrice >= minPrice && minPrice <= 0) {
+    //         let finalProductsFilteredByPrice = [];
+    //         let finalProducerQuantity = [];
+    //
+    //         for (let i = 0; i < filteredProducts.length; i++) {
+    //             if (filteredProducts[i].price <= maxPrice) {
+    //                 finalProductsFilteredByPrice.push(filteredProducts[i]);
+    //             }
+    //         }
+    //
+    //         for (let i = 0; i < products.length; i++) {
+    //             if (products[i].price <= maxPrice) {
+    //                 finalProducerQuantity.push(products[i]);
+    //             }
+    //         }
+    //
+    //         setNewFilteredProducts(finalProductsFilteredByPrice);
+    //         setNewProducerQuantityProducts(finalProducerQuantity);
+    //         return 0;
+    //     }
+    //
+    //     if (maxPrice <= minPrice && minPrice <= 0) {
+    //         setNewFilteredProducts(filteredProducts);
+    //         setNewProducerQuantityProducts(products);
+    //     }
+    // }
 
-            for (let i = 0; i < filteredProducts.length; i++) {
-                if (filteredProducts[i].price >= minPrice) {
-                    newProducts.push(filteredProducts[i]);
-                }
+    useEffect(() => {
+        if (minPrice > 0 || maxPrice > 0) {
+
+            if (minPrice > 0) {
+                setMinPrice(minPrice);
+            }
+            if (maxPrice > 0) {
+                setMaxPrice(maxPrice);
             }
 
-            setNewFilteredProducts(newProducts);
-        } else {
-            setNewFilteredProducts(filteredProducts);
-        }
-    }
+            if (minPrice > 0 && maxPrice > minPrice) {
+                let productsFilteredByPrice = [];
+                let finalProductsFilteredByPrice = [];
+                let producerQuantity = [];
+                let finalProducerQuantity = [];
 
-    const handleMaxPrice = (maxPrice) => {
-        if (maxPrice > 0) {
-            let newProducts = [];
-
-            for (let i = 0; i < filteredProducts.length; i++) {
-                if (filteredProducts[i].price <= maxPrice) {
-                    newProducts.push(filteredProducts[i]);
+                for (let i = 0; i < filteredProducts.length; i++) {
+                    if (filteredProducts[i].price >= minPrice) {
+                        productsFilteredByPrice.push(filteredProducts[i]);
+                    }
                 }
+
+                for (let i = 0; i < productsFilteredByPrice.length; i++) {
+                    if (productsFilteredByPrice[i].price <= maxPrice) {
+                        finalProductsFilteredByPrice.push(productsFilteredByPrice[i]);
+                    }
+                }
+
+                for (let i = 0; i < products.length; i++) {
+                    if (products[i].price >= minPrice) {
+                        producerQuantity.push(products[i]);
+                    }
+                }
+
+                for (let i = 0; i < producerQuantity.length; i++) {
+                    if (producerQuantity[i].price <= maxPrice) {
+                        finalProducerQuantity.push(producerQuantity[i]);
+                    }
+                }
+
+                setNewFilteredProducts(finalProductsFilteredByPrice);
+                setNewProducerQuantityProducts(finalProducerQuantity);
             }
 
-            setNewFilteredProducts(newProducts);
-        } else {
-            setNewFilteredProducts(filteredProducts);
+            if (minPrice > 0 && maxPrice <= 0) {
+                let finalProductsFilteredByPrice = [];
+                let finalProducerQuantity = [];
+
+                for (let i = 0; i < filteredProducts.length; i++) {
+                    if (filteredProducts[i].price >= minPrice) {
+                        finalProductsFilteredByPrice.push(filteredProducts[i]);
+                    }
+                }
+
+                for (let i = 0; i < products.length; i++) {
+                    if (products[i].price >= minPrice) {
+                        finalProducerQuantity.push(products[i]);
+                    }
+                }
+
+                setNewFilteredProducts(finalProductsFilteredByPrice);
+                setNewProducerQuantityProducts(finalProducerQuantity);
+            }
+
+            if (maxPrice >= minPrice && minPrice <= 0) {
+                let finalProductsFilteredByPrice = [];
+                let finalProducerQuantity = [];
+
+                for (let i = 0; i < filteredProducts.length; i++) {
+                    if (filteredProducts[i].price <= maxPrice) {
+                        finalProductsFilteredByPrice.push(filteredProducts[i]);
+                    }
+                }
+
+                for (let i = 0; i < products.length; i++) {
+                    if (products[i].price <= maxPrice) {
+                        finalProducerQuantity.push(products[i]);
+                    }
+                }
+
+                setNewFilteredProducts(finalProductsFilteredByPrice);
+                setNewProducerQuantityProducts(finalProducerQuantity);
+            }
+
+            if (maxPrice <= minPrice && minPrice <= 0) {
+                setNewFilteredProducts(filteredProducts);
+                setNewProducerQuantityProducts(products);
+            }
         }
-    }
+    }, [filteredProducts, minPrice, maxPrice, products])
 
     if (selectedSorting === 'ascending') {
         newFilteredProducts.sort(sortAscending);
@@ -189,15 +341,19 @@ const Products = (props) => {
         newFilteredProducts.sort(sortDescending);
     }
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     return (
         <div className="flex justify-center font-[Roboto]">
             <div className="grid flex-col w-10/12 justify-center">
                 <h1 className="col-span-4 font-light mt-4 text-sm mb-4">hardwarestore
-                    > {props.categoryName} > {props.subCategoryName}</h1>
+                    > {capitalizeFirstLetter(categoryName)} > {capitalizeFirstLetter(subCategoryName.replace(/-/g, ' '))}</h1>
                 <div className="grid grid-container grid-cols-4 gap-8">
                     <div className="col-span-4">
-                        <h1 className="text-3xl font-bold inline-block">{props.subCategoryName}</h1>
-                        <h1 className="text-3xl font-light inline-block ml-2">({products.length})</h1>
+                        <h1 className="text-3xl font-bold inline-block">{capitalizeFirstLetter(subCategoryName.replace(/-/g, ' '))}</h1>
+                        <h1 className="text-3xl font-light inline-block ml-2">({newFilteredProducts.length})</h1>
                     </div>
                     <div className="col-span-1 row-span-6 border-2 mb-12">
                         <h1 className="text-2xl font-semibold pl-4 pt-3">Filtry</h1>
@@ -213,16 +369,16 @@ const Products = (props) => {
                                     <label className="form-check-label inline-block font-light"
                                            htmlFor="inlineCheckbox1">{myproducers.producer}</label>
                                     <label className="form-check-label inline-block font-light text-gray-400 ml-1"
-                                           htmlFor="inlineCheckbox1">({products.filter(({producer}) => producer === myproducers.producer).length})</label>
+                                           htmlFor="inlineCheckbox1">({newProducerQuantityProducts.filter(({producer}) => producer === myproducers.producer).length})</label>
                                 </div>
                             ))
                         }
                         <h1 className="text-xl font-semibold pl-4 pt-3 mb-2">Cena</h1>
-                        <input onChange={e => handleMinPrice(parseInt(e.target.value, 10))}
+                        <input onChange={e => setMinPrice(parseInt(e.target.value, 10))}
                                className="border-2 w-24 ml-4 text-right inline-block" type="number"
                                placeholder="od     zł"/>
                         <div className="w-3 border-2 inline-block mx-2 mb-1"></div>
-                        <input onChange={e => handleMaxPrice(parseInt(e.target.value, 10))}
+                        <input onChange={e => setMaxPrice(parseInt(e.target.value, 10))}
                                className="border-2 w-24 text-right inline-block" type="number" placeholder="do     zł"/>
                     </div>
                     <select onChange={e => setSelectedSorting(e.target.value)} id="sort" name="sort"

@@ -7,7 +7,7 @@ export const links = [
             {
                 Head: "LAPTOPY - ZASTOSOWANIE",
                 sublink: [
-                    {name: 'Laptopy biznesowe', link: '/category/business-laptops'},
+                    {name: 'Laptopy biznesowe', link: '/laptopy/laptopy-biznesowe'},
                     {name: 'Laptopy multimedialne', link: '/'},
                     {name: 'Laptopy gamingowe', link: '/'},
                     {name: 'Dla Twórców', link: '/'},

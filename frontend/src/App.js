@@ -19,8 +19,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<><Slider/><CardSlider/><Newsletter/></>}/>
                 <Route path="/login" element={<><Login/><Newsletter/></>}/>
-                <Route path="/register" element={<><Register/></>}/>
-                <Route path="/category/business-laptops" element={<><Products categoryName="Laptopy" subCategoryName="Laptopy Biznesowe"/></>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/:categoryName/:subCategoryName" element={<Products/>}/>
+                <Route path="/:product" element={<><Products categoryName="Laptopy" subCategoryName="Laptopy Biznesowe"/></>}/>
 
 
                 <Route path="*" element={<ErrorPage/>}/>
