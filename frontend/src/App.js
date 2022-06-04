@@ -10,6 +10,7 @@ import ErrorPage from "./ErrorPage";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Products from "./components/Products/Products";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 function App() {
     return (
@@ -21,7 +22,7 @@ function App() {
                 <Route path="/login" element={<><Login/><Newsletter/></>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/:categoryName/:subCategoryName" element={<Products/>}/>
-                <Route path="/:product" element={<><Products categoryName="Laptopy" subCategoryName="Laptopy Biznesowe"/></>}/>
+                <Route path="/:product" element={<ProductDetails/>}/>
 
 
                 <Route path="*" element={<ErrorPage/>}/>

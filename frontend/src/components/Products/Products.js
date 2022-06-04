@@ -19,35 +19,35 @@ const Products = () => {
             producer: 'Dell'
         },
         {
-            link: '/laptop-apple-macbook-pro-16-mk193ze-a',
+            link: '/laptop-apple-macbook-pro-16',
             src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
             name: 'Laptop Apple MacBook Pro 16',
             price: 14299,
             producer: 'Apple'
         },
         {
-            link: '/laptop-microsoft-surface-laptop-4-15',
+            link: '/laptop-microsoft-surface-laptop-4',
             src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
             name: 'Laptop Microsoft Surface Laptop 4',
             price: 12593.90,
             producer: 'Microsoft'
         },
         {
-            link: '/laptop-lenovo-thinkpad-x1-carbon-g9-20xw00k3pb',
+            link: '/laptop-lenovo-thinkpad-x1-carbon-g9',
             src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
             name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
             price: 10881.90,
             producer: 'Lenovo'
         },
         {
-            link: '/laptop-lenovo-thinkpad-x13-yoga-g2-20w8000qpb',
+            link: '/laptop-lenovo-thinkpad-x13-yoga-g2',
             src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
             name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
             price: 10499,
             producer: 'Lenovo'
         },
         {
-            link: '/laptop-dell-xps-15-9510-djy6y',
+            link: '/laptop-dell-xps-15-9510',
             src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
             name: 'Laptop Dell XPS 15 9510',
             price: 10490,
@@ -148,101 +148,6 @@ const Products = () => {
 
     const [newFilteredProducts, setNewFilteredProducts] = useState(filteredProducts);
     const [newProducerQuantityProducts, setNewProducerQuantityProducts] = useState(products);
-
-    // const handlePriceFilter = (minPrice, maxPrice) => {
-    //     console.log(minPrice);
-    //     console.log(maxPrice);
-    //
-    //     if (minPrice > 0) {
-    //         setMinPrice(minPrice);
-    //     }
-    //     if (maxPrice > 0) {
-    //         setMaxPrice(maxPrice);
-    //     }
-    //
-    //     if (minPrice > 0 && maxPrice > minPrice) {
-    //         let productsFilteredByPrice = [];
-    //         let finalProductsFilteredByPrice = [];
-    //         let producerQuantity = [];
-    //         let finalProducerQuantity = [];
-    //
-    //         for (let i = 0; i < filteredProducts.length; i++) {
-    //             if (filteredProducts[i].price >= minPrice) {
-    //                 productsFilteredByPrice.push(filteredProducts[i]);
-    //             }
-    //         }
-    //
-    //         for (let i = 0; i < productsFilteredByPrice.length; i++) {
-    //             if (productsFilteredByPrice[i].price <= maxPrice) {
-    //                 finalProductsFilteredByPrice.push(productsFilteredByPrice[i]);
-    //             }
-    //         }
-    //
-    //         for (let i = 0; i < products.length; i++) {
-    //             if (products[i].price >= minPrice) {
-    //                 producerQuantity.push(products[i]);
-    //             }
-    //         }
-    //
-    //         for (let i = 0; i < producerQuantity.length; i++) {
-    //             if (producerQuantity[i].price <= maxPrice) {
-    //                 finalProducerQuantity.push(producerQuantity[i]);
-    //             }
-    //         }
-    //
-    //         setNewFilteredProducts(finalProductsFilteredByPrice);
-    //         setNewProducerQuantityProducts(finalProducerQuantity);
-    //
-    //         return 0;
-    //     }
-    //
-    //     if (minPrice > 0 && maxPrice <= 0) {
-    //         let finalProductsFilteredByPrice = [];
-    //         let finalProducerQuantity = [];
-    //
-    //         for (let i = 0; i < filteredProducts.length; i++) {
-    //             if (filteredProducts[i].price >= minPrice) {
-    //                 finalProductsFilteredByPrice.push(filteredProducts[i]);
-    //             }
-    //         }
-    //
-    //         for (let i = 0; i < products.length; i++) {
-    //             if (products[i].price >= minPrice) {
-    //                 finalProducerQuantity.push(products[i]);
-    //             }
-    //         }
-    //
-    //         setNewFilteredProducts(finalProductsFilteredByPrice);
-    //         setNewProducerQuantityProducts(finalProducerQuantity);
-    //         return 0;
-    //     }
-    //
-    //     if (maxPrice >= minPrice && minPrice <= 0) {
-    //         let finalProductsFilteredByPrice = [];
-    //         let finalProducerQuantity = [];
-    //
-    //         for (let i = 0; i < filteredProducts.length; i++) {
-    //             if (filteredProducts[i].price <= maxPrice) {
-    //                 finalProductsFilteredByPrice.push(filteredProducts[i]);
-    //             }
-    //         }
-    //
-    //         for (let i = 0; i < products.length; i++) {
-    //             if (products[i].price <= maxPrice) {
-    //                 finalProducerQuantity.push(products[i]);
-    //             }
-    //         }
-    //
-    //         setNewFilteredProducts(finalProductsFilteredByPrice);
-    //         setNewProducerQuantityProducts(finalProducerQuantity);
-    //         return 0;
-    //     }
-    //
-    //     if (maxPrice <= minPrice && minPrice <= 0) {
-    //         setNewFilteredProducts(filteredProducts);
-    //         setNewProducerQuantityProducts(products);
-    //     }
-    // }
 
     useEffect(() => {
         if (minPrice > 0 || maxPrice > 0) {
