@@ -2,9 +2,18 @@ import React from 'react';
 
 const ProductDetailsDescription = (props) => {
     return (
-        <div className="mt-16 flex justify-center font-[Roboto]">
+        <div id="Opis" className="mt-8 flex justify-center font-[Roboto]">
             <div className="flex-col w-10/12 justify-start">
-                <h1 className="text-3xl ">Opis</h1>
+                <h1 className="text-2xl font-semibold pb-16">Opis produktu</h1>
+                {
+                    props.productDescription.map((productDescription) => (
+                        <>
+                            <h1 className="text-center text-3xl font-semibold pb-4">{productDescription.header}</h1>
+                            <h2 className="pb-4">{productDescription.content}</h2>
+                            <img className="mx-auto pb-12" src={productDescription.image} alt=""/>
+                        </>
+                    ))
+                }
             </div>
         </div>
     );

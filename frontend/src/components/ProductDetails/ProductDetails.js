@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {Rating} from "@mui/material";
 import ProductDetailsNavigation from "./ProductDetailsNavigation";
 import ProductDetailsDescription from "./ProductDetailsDescription";
+import ProductDetailsSpecification from "./ProductDetailsSpecification";
 
 const ProductDetails = () => {
     const productDetails = {
@@ -60,6 +61,101 @@ const ProductDetails = () => {
         },
     ]
 
+    const productSpecification = [
+        {
+            header: 'Producent',
+            content: 'Dell',
+        },
+        {
+            header: 'Kod producenta',
+            content: 'DJY6Y',
+        },
+        {
+            header: 'Typ',
+            content: 'Laptop',
+        },
+        {
+            header: 'Zastosowanie',
+            content: 'Biznesowe',
+        },
+        {
+            header: 'Kolor',
+            content: 'Srebrno-czarny',
+        },
+        {
+            header: 'Procesor',
+            content: 'Intel Core i7-1180H',
+        },
+        {
+            header: 'Taktowanie procesora (bazowe/turbo)',
+            content: '1.9 GHz / 4.6 GHz',
+        },
+        {
+            header: 'Liczba rdzeni / wątków',
+            content: '8/16',
+        },
+        {
+            header: 'Pamięć RAM (zainstalowana)',
+            content: '16 GB',
+        },
+        {
+            header: 'Pamięć RAM (maksymalna)',
+            content: '32 GB',
+        },
+        {
+            header: 'Typ pamięci RAM',
+            content: 'DDR4',
+        },
+        {
+            header: 'Częstotliwość taktowania pamięci',
+            content: '3200 MHz',
+        },
+        {
+            header: 'Ilość gniazd pamięci (ogółem/wolne)',
+            content: '2/0',
+        },
+        {
+            header: 'Dysk SSD M.2 PCIe',
+            content: '512 GB',
+        },
+        {
+            header: 'Zintegrowany układ graficzny',
+            content: 'Intel UHD Graphics Xe',
+        },
+        {
+            header: 'Dedykowany układ graficzny',
+            content: 'NVIDIA GeForce RTX 3050 Ti Laptop GPU',
+        },
+        {
+            header: 'Pamięć karty graficznej',
+            content: '4 GB',
+        },
+        {
+            header: 'Typ pamięci',
+            content: 'GDDR6',
+        },
+        {
+            header: 'Przekątna ekranu',
+            content: '15.6"',
+        },
+        {
+            header: 'Rozdzielczość',
+            content: '1920 x 1200 (WUXGA)',
+        },
+        {
+            header: 'Powłoka matrycy',
+            content: 'Błyszcząca',
+        },
+        {
+            header: 'Typ matrycy',
+            content: 'IPS',
+        },
+        {
+            header: 'Częstotliwość odświeżania',
+            content: '60 Hz',
+        },
+    ]
+
     let {product} = useParams();
 
     let totalRatings = 0;
@@ -113,6 +209,7 @@ const ProductDetails = () => {
         </div>
         <ProductDetailsNavigation/>
         <ProductDetailsDescription productDescription={productDescription}/>
+        <ProductDetailsSpecification productSpecification={productSpecification}/>
     </>);
 };
 
