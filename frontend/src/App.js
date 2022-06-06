@@ -11,6 +11,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Products from "./components/Products/Products";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import Cart from "./components/Cart/Cart";
 
 function App() {
     return (
@@ -20,9 +21,10 @@ function App() {
             <Routes>
                 <Route path="/" element={<><Slider/><CardSlider/><Newsletter/></>}/>
                 <Route path="/login" element={<><Login/><Newsletter/></>}/>
-                <Route path="/register" element={<Register/>}/>
+                <Route path="/rejestracja" element={<Register/>}/>
                 <Route path="/:categoryName/:subCategoryName" element={<Products/>}/>
                 <Route path="/:product" element={<ProductDetails/>}/>
+                <Route path="/koszyk" element={<Cart/>}/>
 
 
                 <Route path="*" element={<ErrorPage/>}/>

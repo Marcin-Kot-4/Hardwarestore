@@ -4,6 +4,7 @@ import {Rating} from "@mui/material";
 import ProductDetailsNavigation from "./ProductDetailsNavigation";
 import ProductDetailsDescription from "./ProductDetailsDescription";
 import ProductDetailsSpecification from "./ProductDetailsSpecification";
+import ProductDetailsReviews from "./ProductDetailsReviews";
 
 const ProductDetails = () => {
     const productDetails = {
@@ -23,9 +24,9 @@ const ProductDetails = () => {
     }];
 
     const productRatings = [{
-        stars: 6, description: 'Jestem bardzo zadowolony z tego sprzętu.'
+        userName: 'Jerzy', stars: 6, description: 'Jestem bardzo zadowolony z tego sprzętu.'
     }, {
-        stars: 5, description: 'Jest git.'
+        userName: 'Magdalena', stars: 5, description: 'Jest git.'
     }]
 
     const productDescription = [
@@ -210,6 +211,7 @@ const ProductDetails = () => {
         <ProductDetailsNavigation/>
         <ProductDetailsDescription productDescription={productDescription}/>
         <ProductDetailsSpecification productSpecification={productSpecification}/>
+        <ProductDetailsReviews productReviews={productRatings} averageRating={averageRating}/>
     </>);
 };
 

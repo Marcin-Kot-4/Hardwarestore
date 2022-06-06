@@ -11,7 +11,9 @@ const HeaderIcons = () => {
                 <Icon text="Zaloguj się" iconName="person-outline" iconNameHover="person"></Icon>
             </Link>
             <Icon text="Ulubione" iconName="heart-outline" iconNameHover="heart"></Icon>
-            <Icon text="Koszyk" iconName="basket-outline" iconNameHover="basket"></Icon>
+            <Link to="/koszyk">
+                <Icon text="Koszyk" iconName="basket-outline" iconNameHover="basket"></Icon>
+            </Link>
         </div>
     );
 };

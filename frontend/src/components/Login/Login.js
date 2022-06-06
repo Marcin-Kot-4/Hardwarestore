@@ -28,7 +28,7 @@ const Login = () => {
                 </div>
                 <div className="flex-1 w-3/12 text-left ml-8">
                     <h1 className="font-bold text-2xl text-left mb-1">Jestem tu pierwszy raz</h1>
-                    <Link to="/register">
+                    <Link to="/rejestracja">
                         <button className="mt-14 w-full hover:bg-black hover:text-white border-2 border-black px-6 py-2 font-normal">ZAREJESTRUJ SIĘ</button>
                     </Link>
                 </div>
