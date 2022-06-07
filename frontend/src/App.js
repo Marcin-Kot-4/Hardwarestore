@@ -12,6 +12,7 @@ import Register from "./components/Register/Register";
 import Products from "./components/Products/Products";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Cart from "./components/Cart/Cart";
+import DeliveryAndPayment from "./components/DeliveryAndPayment/DeliveryAndPayment";
 
 function App() {
     return (
@@ -25,7 +26,7 @@ function App() {
                 <Route path="/:categoryName/:subCategoryName" element={<Products/>}/>
                 <Route path="/:product" element={<ProductDetails/>}/>
                 <Route path="/koszyk" element={<><Cart/><Newsletter/></>}/>
-                <Route path="/dostawaiplatnosc" element={<><Newsletter/></>}/>
+                <Route path="/dostawaiplatnosc" element={<><DeliveryAndPayment/><Newsletter/></>}/>
 
 
 
