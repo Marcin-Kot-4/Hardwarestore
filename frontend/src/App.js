@@ -24,7 +24,9 @@ function App() {
                 <Route path="/rejestracja" element={<Register/>}/>
                 <Route path="/:categoryName/:subCategoryName" element={<Products/>}/>
                 <Route path="/:product" element={<ProductDetails/>}/>
-                <Route path="/koszyk" element={<Cart/>}/>
+                <Route path="/koszyk" element={<><Cart/><Newsletter/></>}/>
+                <Route path="/dostawaiplatnosc" element={<><Newsletter/></>}/>
+
 
 
                 <Route path="*" element={<ErrorPage/>}/>

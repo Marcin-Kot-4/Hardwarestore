@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Icon = (props) => {
+const HeaderIcon = (props) => {
     const [icon, setIcon] = useState(props.iconName);
 
     return (
@@ -15,4 +15,4 @@ const Icon = (props) => {
     );
 };
 
-export default Icon;
+export default HeaderIcon;
