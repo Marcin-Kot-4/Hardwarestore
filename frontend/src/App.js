@@ -13,20 +13,26 @@ import Products from "./components/Products/Products";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Cart from "./components/Cart/Cart";
 import DeliveryAndPayment from "./components/DeliveryAndPayment/DeliveryAndPayment";
+import Profile from "./components/Profile/Profile";
 
 function App() {
+    const authorized = true;
+    const role = 'user';
+
     return (
         <Router>
-            <Header/>
+            <Header authorized={authorized}/>
             <Navbar/>
             <Routes>
                 <Route path="/" element={<><Slider/><CardSlider/><Newsletter/></>}/>
+                <Route path="/logged" element={<><Slider/><CardSlider/><Newsletter/></>}/>
                 <Route path="/login" element={<><Login/><Newsletter/></>}/>
                 <Route path="/rejestracja" element={<Register/>}/>
                 <Route path="/:categoryName/:subCategoryName" element={<Products/>}/>
-                <Route path="/:product" element={<ProductDetails/>}/>
+                <Route path="/produkt/:product" element={<ProductDetails/>}/>
                 <Route path="/koszyk" element={<><Cart/><Newsletter/></>}/>
                 <Route path="/dostawaiplatnosc" element={<><DeliveryAndPayment/><Newsletter/></>}/>
+                <Route path="/mojekonto" element={<Profile authorized={authorized} role={role}/>}/>
 
 
 

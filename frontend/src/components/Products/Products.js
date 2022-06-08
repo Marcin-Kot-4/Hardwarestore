@@ -5,49 +5,49 @@ import {useParams} from "react-router-dom";
 const Products = () => {
     const products = useMemo(() => [
         {
-            link: '/laptop-asus-chromebook-flip',
+            link: '/produkt/laptop-asus-chromebook-flip',
             src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
             name: 'Laptop Asus ASUS Chromebook Flip',
             price: 2599,
             producer: 'ASUS'
         },
         {
-            link: '/laptop-dell-xps-17-9710',
+            link: '/produkt/laptop-dell-xps-17-9710',
             src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
             name: 'Laptop Dell XPS 17 9710',
             price: 29662.70,
             producer: 'Dell'
         },
         {
-            link: '/laptop-apple-macbook-pro-16',
+            link: '/produkt/laptop-apple-macbook-pro-16',
             src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
             name: 'Laptop Apple MacBook Pro 16',
             price: 14299,
             producer: 'Apple'
         },
         {
-            link: '/laptop-microsoft-surface-laptop-4',
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
             src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
             name: 'Laptop Microsoft Surface Laptop 4',
             price: 12593.90,
             producer: 'Microsoft'
         },
         {
-            link: '/laptop-lenovo-thinkpad-x1-carbon-g9',
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
             src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
             name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
             price: 10881.90,
             producer: 'Lenovo'
         },
         {
-            link: '/laptop-lenovo-thinkpad-x13-yoga-g2',
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
             src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
             name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
             price: 10499,
             producer: 'Lenovo'
         },
         {
-            link: '/laptop-dell-xps-15-9510',
+            link: '/produkt/laptop-dell-xps-15-9510',
             src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
             name: 'Laptop Dell XPS 15 9510',
             price: 10490,
