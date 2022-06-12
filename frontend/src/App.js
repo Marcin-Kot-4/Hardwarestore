@@ -17,7 +17,7 @@ import Profile from "./components/Profile/Profile";
 
 function App() {
     const authorized = true;
-    const role = 'user';
+    const role = 'admin';
 
     return (
         <Router>
@@ -28,8 +28,8 @@ function App() {
                 <Route path="/logged" element={<><Slider/><CardSlider/><Newsletter/></>}/>
                 <Route path="/login" element={<><Login/><Newsletter/></>}/>
                 <Route path="/rejestracja" element={<Register/>}/>
-                <Route path="/:categoryName/:subCategoryName" element={<Products/>}/>
-                <Route path="/produkt/:product" element={<ProductDetails/>}/>
+                <Route path="/:categoryName/:subCategoryName" element={<><Products/><Newsletter/></>}/>
+                <Route path="/produkt/:product" element={<><ProductDetails/><Newsletter/></>}/>
                 <Route path="/koszyk" element={<><Cart/><Newsletter/></>}/>
                 <Route path="/dostawaiplatnosc" element={<><DeliveryAndPayment/><Newsletter/></>}/>
                 <Route path="/mojekonto" element={<Profile authorized={authorized} role={role}/>}/>
