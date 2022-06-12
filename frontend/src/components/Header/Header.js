@@ -3,7 +3,7 @@ import HeaderIcons from "./HeaderIcons";
 import Logo from "../../assets/Logo.png";
 import {Link} from "react-router-dom";
 
-const Header = (props) => {
+const Header = () => {
     return (
         <div className="flex xl:h-20 h-12">
             <div className="xl:flex justify-start w-5/12"></div>
@@ -12,7 +12,7 @@ const Header = (props) => {
                 <h1 className="pl-2 font-[Poppins] text-2xl font-semibold">hardwarestore.com</h1>
             </Link>
             <div className="xl:flex justify-end xl:w-4/12 w-8/12">
-                <HeaderIcons authorized={props.authorized}/>
+                <HeaderIcons/>
             </div>
         </div>
     );
