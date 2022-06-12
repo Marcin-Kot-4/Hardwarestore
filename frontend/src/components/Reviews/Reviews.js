@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import More from "../More";
 
-const Profile = (props) => {
+const Reviews = (props) => {
     const formatter = new Intl.DateTimeFormat('pl', {
         day: 'numeric',
         month: 'long',
@@ -57,7 +56,6 @@ const Profile = (props) => {
         }
     ]
 
-
     return (
         <div className="flex justify-center font-[Roboto] my-16">
             <div className="w-9/12">
@@ -85,10 +83,10 @@ const Profile = (props) => {
                             <h1 className="text-xl font-medium mb-4">Patrycja</h1>
                     }
                     <Link to="/mojekonto/zamowienia">
-                        <h1 className="font-light text-black hover:text-primary duration-300 text-sm cursor-pointer mb-1 font-medium">Zamówienia</h1>
+                        <h1 className="font-light text-black hover:text-primary duration-300 text-sm cursor-pointer mb-1">Zamówienia</h1>
                     </Link>
                     <Link to="/mojekonto/opinie">
-                        <h1 className="font-light text-black hover:text-primary duration-300 text-sm cursor-pointer mb-1">Opinie</h1>
+                        <h1 className="font-light text-black hover:text-primary duration-300 text-sm cursor-pointer mb-1 font-medium">Opinie</h1>
                     </Link>
                     <Link to="/mojekonto/ustawieniakonta">
                         <h1 className="font-light text-black hover:text-primary duration-300 text-sm cursor-pointer mb-1">Ustawienia
@@ -99,24 +97,22 @@ const Profile = (props) => {
                         <h1 className="font-light text-black hover:text-primary duration-300 text-sm cursor-pointer mb-1">Wyloguj</h1>
                     </Link>
                 </div>
-                <div className="w-9/12 float-left border-l-2 pl-12 border-gray-100">
-                    <h1 className="text-2xl font-bold inline">Zamówienia</h1>
+                <div className="w-3/5 float-left border-l-2 pl-12 border-gray-100">
+                    <h1 className="text-2xl font-bold inline">Opinie</h1>
                     <div className="mt-6">
                         {
                             orders.map((c) => (
                                 <div className="w-full h-36 border-2 border-gray-100 mb-3">
-                                    <div
-                                        className="inline-block text-left justify-start align-middle w-3/12 float-left bg-n_gray h-full pl-6 pt-4">
-                                        <h1 className="font-semibold mb-3">{c.status}</h1>
-                                        <h1 className="font-normal text-sm">{formatter.format(c.date)}</h1>
-                                        <h1 className="font-light text-sm">nr {c.id}</h1>
-                                        <h1 className="text-sm font-semibold mt-3">{c.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ', ')} zł</h1>
-                                    </div>
-                                    <div className="inline-block w-9/12">
-                                        <img className="inline-block w-24 h-24 object-contain ml-8 mt-" src={c.image}
+                                    <div className="inline-block w-full">
+                                        <img className="inline-block w-24 h-24 object-contain ml-8" src={c.image}
                                              alt=""/>
-                                        <h1 className="inline-block text-center pl-8 pt-16 font-light text-sm">{c.productName}</h1>
-                                        <More options={c.options}/>
+                                        <div className="inline-block pt-10 pl-8">
+                                            <h1 className="text-center font-light text-sm">{c.productName}</h1>
+                                            <h1 className="font-light text-xs">{formatter.format(c.date)}</h1>
+                                        </div>
+                                        <button className="mt-12 mr-4 float-right hover:bg-black hover:text-white
+                                         px-6 py-2 font-light border border-black">Wystaw opinię
+                                        </button>
                                     </div>
                                 </div>
                             ))
@@ -144,4 +140,4 @@ const Profile = (props) => {
     );
 };
 
-export default Profile;
+export default Reviews;

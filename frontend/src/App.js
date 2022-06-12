@@ -14,6 +14,8 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Cart from "./components/Cart/Cart";
 import DeliveryAndPayment from "./components/DeliveryAndPayment/DeliveryAndPayment";
 import Profile from "./components/Profile/Profile";
+import Reviews from "./components/Reviews/Reviews";
+import UsersList from "./components/UsersList/UsersList";
 
 function App() {
     const authorized = true;
@@ -33,6 +35,8 @@ function App() {
                 <Route path="/koszyk" element={<><Cart/><Newsletter/></>}/>
                 <Route path="/dostawaiplatnosc" element={<><DeliveryAndPayment/><Newsletter/></>}/>
                 <Route path="/mojekonto" element={<Profile authorized={authorized} role={role}/>}/>
+                <Route path="/mojekonto/opinie" element={<Reviews authorized={authorized} role={role}/>}/>
+                <Route path="/mojekonto/listauzytkownikow" element={<UsersList/>}/>
 
 
 
