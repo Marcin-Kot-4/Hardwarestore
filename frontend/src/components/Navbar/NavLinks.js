@@ -1,29 +1,56 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {links} from "./Mylinks";
+import CategoryService from "../../services/category.service";
+import log from "tailwindcss/lib/util/log";
+import {ca} from "react-date-range/dist/locale";
 
 const NavLinks = () => {
+    const linkss = CategoryService.getAllCategories()
+    const [categoriesList, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:8080/api/categories/all")
+            .then(response => response.json())
+            .then((result) => {
+                    setCategories(result);
+                }
+            )
+    }, [])
+
+    // categories.map((category) => (
+    //     console.log(category.name)
+    // ));
+
+
+    console.log(categoriesList);
+
     const [heading, setHeading] = useState("");
     const [subHeading, setSubHeading] = useState("");
 
     return (
         <>
             {
-                links.map((link) => (
-                    <div key={link.key}>
+                // categories.map((category) => (
+                //     <h1>{category.name}</h1>
+                // ))
+            }
+            { categoriesList.length > 0 ?
+                categoriesList.map((mainCategory) => (
+                    <div key={mainCategory.id}>
                         <div className="h-12 text-left xl:cursor-pointer group">
                             {/* Toggle subLinks on mobile devices */}
                             <h1 className="h-12 hover:text-white hover:bg-black font-light flex justify-between items-center
                              xl:pr-2 xl:pl-3 pl-5 pr-5 group group-hover:bg-black group-hover:text-white"
                                 onClick={() => {
-                                    heading !== link.name ? setHeading(link.name) : setHeading("");
+                                    heading !== mainCategory.name ? setHeading(mainCategory.name) : setHeading("");
                                     setSubHeading("");
                                 }}>
-                                {link.name}
+                                {mainCategory.name}
                                 {/* Mobile chevron */}
                                 <span className="text-xl xl:hidden inline">
                                     <ion-icon
-                                        name={`${heading === link.name ? "chevron-up" : "chevron-down"}`}></ion-icon>
+                                        name={`${heading === mainCategory.name ? "chevron-up" : "chevron-down"}`}></ion-icon>
                                 </span>
                                 {/* Desktop chevron */}
                                 <span
@@ -32,7 +59,7 @@ const NavLinks = () => {
                                         name="chevron-down"></ion-icon>
                                 </span>
                             </h1>
-                            {link.submenu && (
+                            {(
                                 <div>
                                     <div
                                         className="absolute z-50 top-28 pt-1 hidden  group-hover:xl:block hover:xl:block">
@@ -41,13 +68,13 @@ const NavLinks = () => {
                                         </div>
                                         <div className="bg-m_gray p-5 grid grid-cols-3 gap-10">
                                             {
-                                                link.sublinks.map((mysublinks) => (
+                                                mainCategory.categories.map((category) => (
                                                     <div>
-                                                        <h1 className="font-normal">{mysublinks.Head}</h1>
-                                                        {mysublinks.sublink.map(sublink => (
+                                                        <h1 className="font-normal">{category.name}</h1>
+                                                        {category.subCategories.map(subCategory => (
                                                             <li className="text-sm text-gray-600 my-2.5">
-                                                                <Link to={sublink.link}
-                                                                      className="hover:text-primary">{sublink.name}</Link>
+                                                                <Link to={subCategory.link}
+                                                                      className="hover:text-primary">{subCategory.name}</Link>
                                                             </li>
                                                         ))}
                                                     </div>
@@ -58,47 +85,10 @@ const NavLinks = () => {
                                 </div>
                             )}
                         </div>
-                        {/* Mobile dropdown menu */}
-                        <div className={`
-                            ${heading === link.name ? 'xl:hidden' : 'hidden'}
-                        `}>
-                            {/* subLinks */}
-                            {
-                                link.sublinks.map((sublinks) => (
-                                    <div>
-                                        <div>
-                                            {/* Toggle subSubLinks */}
-                                            <h1 onClick={() =>
-                                                subHeading !== sublinks.Head ?
-                                                    setSubHeading(sublinks.Head)
-                                                    : setSubHeading("")
-                                            }
-                                                className="py-4 pl-7 font-normal xl:pr-0 pr-5 flex justify-between items-center">
-                                                {sublinks.Head}
-                                                <span className="text-xl xl:mt-1 xl:ml-2 inline">
-                                    <ion-icon
-                                        name={`${subHeading === sublinks.Head ? "chevron-up" : "chevron-down"}`}></ion-icon>
-                                </span>
-                                            </h1>
-                                            <div className={`${
-                                                subHeading === sublinks.Head ? "xl:hidden" : "hidden"
-                                            }`}>
-                                                {sublinks.sublink.map(sublink => (
-                                                    <li className="py-3 pl-14">
-                                                        <Link to={sublink.link}
-                                                              className="hover:text-primary font-light">
-                                                            {sublink.name}
-                                                        </Link>
-                                                    </li>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))
-                            }
-                        </div>
                     </div>
                 ))
+                :
+                <div>Cannot fetch data</div>
             }
         </>
     );

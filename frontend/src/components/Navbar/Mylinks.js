@@ -2,7 +2,6 @@ export const links = [
     {
         key: 1,
         name: 'LAPTOPY',
-        submenu: true,
         sublinks: [
             {
                 Head: "LAPTOPY - ZASTOSOWANIE",
@@ -63,7 +62,6 @@ export const links = [
     {
         key: 2,
         name: 'KOMPUTERY',
-        submenu: true,
         sublinks: [
             {
                 Head: "LAPTOPY - ZASTOSOWANIE",
@@ -124,7 +122,6 @@ export const links = [
     {
         key: 3,
         name: 'PODZESPOŁY',
-        submenu: true,
         sublinks: [
             {
                 Head: "LAPTOPY - ZASTOSOWANIE",
@@ -185,7 +182,6 @@ export const links = [
     {
         key: 4,
         name: 'PERYFERIA',
-        submenu: true,
         sublinks: [
             {
                 Head: "LAPTOPY - ZASTOSOWANIE",
@@ -246,7 +242,6 @@ export const links = [
     {
         key: 5,
         name: 'AKCESORIA',
-        submenu: true,
         sublinks: [
             {
                 Head: "LAPTOPY - ZASTOSOWANIE",

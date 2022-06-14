@@ -47,9 +47,9 @@ const ProfileNavigation = (props) => {
                     konta
                 </h1>
             </Link>
-            <Link to="/login" onClick={logOut}>
+            <a href="/login" onClick={logOut}>
                 <h1 className="font-light text-black hover:text-primary duration-300 text-sm cursor-pointer mb-1">Wyloguj</h1>
-            </Link>
+            </a>
         </div>
     );
 };
