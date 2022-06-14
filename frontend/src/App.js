@@ -16,6 +16,7 @@ import DeliveryAndPayment from "./components/DeliveryAndPayment/DeliveryAndPayme
 import Profile from "./components/Profile/Profile";
 import Reviews from "./components/Reviews/Reviews";
 import UsersList from "./components/UsersList/UsersList";
+import Help from "./components/Help/Help";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/mojekonto/zamowienia" element={<Profile styleBold={'orders'}/>}/>
                 <Route path="/mojekonto/opinie" element={<Reviews styleBold={'reviews'}/>}/>
                 <Route path="/mojekonto/listauzytkownikow" element={<UsersList styleBold={'usersList'}/>}/>
+                <Route path="/jakkupowac" element={<Help/>}/>
 
 
 

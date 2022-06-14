@@ -13,7 +13,7 @@ export const CustomerService = [
     { name: "Kontakt", link: "#" },
 ];
 export const Help = [
-    { name: "Jak kupować?", link: "#" },
+    { name: "Jak kupować?", link: "/jakkupowac" },
     { name: "FAQ", link: "#" },
     { name: "Klub rabatowy", link: "#" },
     { name: "Karty podarunkowe", link: "#" },
