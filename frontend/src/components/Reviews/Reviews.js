@@ -1,6 +1,4 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import AuthService from "../../services/auth.service";
 import ProfileNavigation from "../Profile/ProfileNavigation";
 
 const Reviews = (props) => {
@@ -9,8 +7,6 @@ const Reviews = (props) => {
         month: 'long',
         year: 'numeric'
     });
-
-    const currentUser = AuthService.getCurrentUser();
 
     const orders = [
         {

@@ -1,10 +1,9 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
-import {isEmail} from 'validator';
 import AuthService from "../../services/auth.service";
+import jwt_decode from "jwt-decode";
 
 const required = (value) => {
     if (!value) {
@@ -59,6 +58,38 @@ const Login = () => {
         }
     };
 
+    const [user, setUser] = useState({});
+
+    function handleCallbackResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential);
+        let userObject = jwt_decode(response.credential);
+        console.log(userObject);
+        setUser(userObject);
+        localStorage.setItem("user", JSON.stringify(userObject));
+    }
+
+    function handleSignOut(event) {
+        setUser({});
+        localStorage.removeItem("user");
+    }
+
+    useEffect(() => {
+        /* global google */
+        google.accounts.id.initialize({
+            client_id: "5911628702-3ab4jj6u6rih7m733mufb0dv4cikfovi.apps.googleusercontent.com",
+            callback: handleCallbackResponse
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("signInDiv"),
+            { theme: "outline", size: "large"}
+        )
+
+        google.accounts.id.prompt();
+    }, []);
+
+    console.log(user);
+
     return (
         <div className="flex justify-center mt-16">
             <div className="w-6/12 flex">
@@ -102,17 +133,37 @@ const Login = () => {
                             ref={checkBtn}
                         />
                     </Form>
-                    <Link to="/login">
-                        <button
-                            className="flex relative mt-12 w-full hover:bg-black hover:text-white border-2 border-black px-6 py-2 font-normal">
-                            <div className="absolute flex h-6 pl-12 items-center text-primary">
-                                <img className="h-6"
-                                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png"
-                                     alt=""/>
-                            </div>
-                            <h2 className="inline w-full">Google</h2>
-                        </button>
-                    </Link>
+                    {/*<Link to="/login">*/}
+                    {/*    <button*/}
+                    {/*        className="flex relative mt-12 w-full hover:bg-black hover:text-white border-2 border-black px-6 py-2 font-normal">*/}
+                    {/*        <div className="absolute flex h-6 pl-12 items-center text-primary">*/}
+                    {/*            <img className="h-6"*/}
+                    {/*                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png"*/}
+                    {/*                 alt=""/>*/}
+                    {/*        </div>*/}
+                    {/*        <h2 className="inline w-full">Google</h2>*/}
+                    {/*    </button>*/}
+                    {/*</Link>*/}
+
+                    {/*Google login*/}
+                    {/*{*/}
+                    {/*    Object.keys(user).length === 0 &&*/}
+                    {/*    <div id="signInDiv" className="mt-12 mx-auto table"></div>*/}
+                    {/*}*/}
+
+                    {
+                        Object.keys(user).length !== 0 &&
+                        <div className="mx-auto font-[Roboto] table mt-12 text-center">
+                            <h1 className="mb-2 font-light">Zalogowano jako:</h1>
+                            <img src={user.picture} alt="" className="w-12 inline-block"/>
+                            <h3 className="ml-4 inline-block">{user.name}</h3>
+                            <button className="mt-4 w-full bg-black hover:bg-white hover:text-black text-white border-2 border-transparent hover:border-black px-6 py-2 font-normal"
+                                    onClick={(e) => handleSignOut(e)}>Wyloguj się</button>
+                        </div>
+                    }
+
+
+
                     <h2 className="font-light text-center mt-12">Nie pamiętasz hasła?</h2>
                 </div>
                 <div className="flex-1 w-3/12 text-left ml-8">
