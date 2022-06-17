@@ -2,21 +2,21 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 
 const NavLinks = () => {
-    const [categoriesList, setCategories] = useState([]);
+    const [mainCategories, setMainCategories] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:8080/api/categories/all")
             .then(response => response.json())
             .then((result) => {
-                    setCategories(result);
+                    setMainCategories(result);
                 }
             )
     }, [])
 
     return (
         <>
-            { categoriesList.length > 0 ?
-                categoriesList.map((mainCategory) => (
+            { mainCategories.length > 0 ?
+                mainCategories.map((mainCategory) => (
                     <div key={mainCategory.id}>
                         <div className="h-12 text-left xl:cursor-pointer group">
                             <h1 className="h-12 hover:text-white hover:bg-black font-light flex justify-between items-center
@@ -57,7 +57,7 @@ const NavLinks = () => {
                     </div>
                 ))
                 :
-                <div>Cannot fetch data</div>
+                <div>Brak danych do wyświetlenia</div>
             }
         </>
     );

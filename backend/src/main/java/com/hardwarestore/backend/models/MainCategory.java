@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "main_category")
+@Table(name = "main_categories")
 @Getter
 @Setter
 public class MainCategory {

@@ -295,7 +295,7 @@ const Products = () => {
                         newFilteredProducts.length > 0 ?
                             newFilteredProducts.map((myproducts) => (
                                 <Link className="" to={myproducts.link}>
-                                    <div className="col-span-1 row-span-1 ">
+                                    <div className="col-span-1 row-span-1 h-60 w-72">
                                         <img className="h-40" src={myproducts.src} alt=""/>
                                         <h1 className="font-normal mt-6">{myproducts.name}</h1>
                                         <h1 className="font-normal text-xl">{myproducts.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ', ')} zł</h1>
