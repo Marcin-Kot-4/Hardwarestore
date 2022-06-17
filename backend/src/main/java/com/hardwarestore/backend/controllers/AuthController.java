@@ -1,5 +1,6 @@
 package com.hardwarestore.backend.controllers;
 
+import com.hardwarestore.backend.exception.ResourceNotFoundException;
 import com.hardwarestore.backend.models.ERole;
 import com.hardwarestore.backend.models.Role;
 import com.hardwarestore.backend.models.User;
@@ -43,6 +44,14 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        User user = userRepository.findByUsername(loginRequest.getUsername())
+                .orElseThrow(() -> new ResourceNotFoundException("Wrong username or password!"));
+        if (!user.getIsAccountNonLocked()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: This account is locked!"));
+        }
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -52,11 +61,9 @@ public class AuthController {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
+        return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(),
+                roles, userDetails.getName(), userDetails.getSurname(), userDetails.getDateOfBirth(), userDetails.getStreet(),
+                userDetails.getHouseNumber(), userDetails.getPostalCode(), userDetails.getCity()));
     }
 
     @PostMapping("/signup")
@@ -74,7 +81,9 @@ public class AuthController {
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()), signUpRequest.getName(), signUpRequest.getSurname(),
+                signUpRequest.getDateOfBirth(), signUpRequest.getStreet(), signUpRequest.getHouseNumber(),
+                signUpRequest.getPostalCode(), signUpRequest.getCity(), true);
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
         if (strRoles == null) {
