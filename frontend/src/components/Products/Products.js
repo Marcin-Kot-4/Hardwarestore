@@ -1,9 +1,745 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {Link} from "react-router-dom";
 import {useParams} from "react-router-dom";
+import {Pagination} from "@mui/material";
 
 const Products = () => {
     const products = useMemo(() => [
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-asus-chromebook-flip',
+            src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
+            name: 'Laptop Asus ASUS Chromebook Flip',
+            price: 2599,
+            producer: 'ASUS'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-17-9710',
+            src: 'https://images.morele.net/i256/9781560_0_i256.jpg',
+            name: 'Laptop Dell XPS 17 9710',
+            price: 29662.70,
+            producer: 'Dell'
+        },
+        {
+            link: '/produkt/laptop-apple-macbook-pro-16',
+            src: 'https://images.morele.net/i256/9371894_0_i256.jpg',
+            name: 'Laptop Apple MacBook Pro 16',
+            price: 14299,
+            producer: 'Apple'
+        },
+        {
+            link: '/produkt/laptop-microsoft-surface-laptop-4',
+            src: 'https://images.morele.net/i256/9629200_0_i256.jpg',
+            name: 'Laptop Microsoft Surface Laptop 4',
+            price: 12593.90,
+            producer: 'Microsoft'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x1-carbon-g9',
+            src: 'https://images.morele.net/i256/10227127_4_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X1 Carbon G9',
+            price: 10881.90,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-lenovo-thinkpad-x13-yoga-g2',
+            src: 'https://images.morele.net/i256/8565867_0_i256.jpg',
+            name: 'Laptop Lenovo ThinkPad X13 Yoga G2',
+            price: 10499,
+            producer: 'Lenovo'
+        },
+        {
+            link: '/produkt/laptop-dell-xps-15-9510',
+            src: 'https://images.morele.net/i256/9259054_0_i256.jpg',
+            name: 'Laptop Dell XPS 15 9510',
+            price: 10490,
+            producer: 'Dell'
+        },
         {
             link: '/produkt/laptop-asus-chromebook-flip',
             src: 'https://images.morele.net/i256/8307177_0_i256.jpg',
@@ -250,6 +986,23 @@ const Products = () => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    //The Pagination component enables the user to select a specific page from a range of pages.
+    let [page, setPage] = useState(1);
+    const LIMIT_FOR_PAGE = 12;
+
+    const [noOfPages, setNoOfPages] = React.useState(
+        Math.ceil(newFilteredProducts.length / LIMIT_FOR_PAGE)
+    );
+
+    const handleChange = (event, value) => {
+        setPage(value);
+    };
+
+    useEffect(() => {
+        setNoOfPages(Math.ceil(newFilteredProducts.length / LIMIT_FOR_PAGE));
+        setPage(1);
+    },[newFilteredProducts])
+
     return (
         <div className="flex justify-center font-[Roboto]">
             <div className="grid flex-col w-10/12 justify-center">
@@ -270,7 +1023,7 @@ const Products = () => {
                                         className="ml-4 form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                         onChange={() => handleToggle(myproducers.producer)} type="checkbox"
                                         id={'checkbox' + myproducers.producer} value={myproducers.producer}
-                                        checked={Checked.indexOf(myproducers.producer) === -1 ? false : true}/>
+                                        checked={Checked.indexOf(myproducers.producer) !== -1}/>
                                     <label className="form-check-label inline-block font-light"
                                            htmlFor="inlineCheckbox1">{myproducers.producer}</label>
                                     <label className="form-check-label inline-block font-light text-gray-400 ml-1"
@@ -291,22 +1044,31 @@ const Products = () => {
                         <option value="ascending">Cena - rosnąco</option>
                         <option value="descending">Cena - malejąco</option>
                     </select>
-                    {
-                        newFilteredProducts.length > 0 ?
-                            newFilteredProducts.map((myproducts) => (
-                                <Link className="" to={myproducts.link}>
-                                    <div className="col-span-1 row-span-1 h-60 w-72">
-                                        <img className="h-40" src={myproducts.src} alt=""/>
-                                        <h1 className="font-normal mt-6">{myproducts.name}</h1>
-                                        <h1 className="font-normal text-xl">{myproducts.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ', ')} zł</h1>
+                            {
+                                newFilteredProducts.length > 0 ?
+                                    newFilteredProducts.slice((page - 1) * LIMIT_FOR_PAGE, page * LIMIT_FOR_PAGE).map((myproducts) => (
+
+                                        <Link to={myproducts.link}>
+                                            <div className="col-span-1 row-span-1 h-60 w-72">
+                                                <img className="h-40" src={myproducts.src} alt=""/>
+                                                <h1 className="font-normal mt-6">{myproducts.name}</h1>
+                                                <h1 className="font-normal text-xl">{myproducts.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ', ')} zł</h1>
+                                            </div>
+                                        </Link>
+
+                                    )) :
+                                    <div className="col-span-3 text-center">
+                                        <h1>
+                                            Żaden produkt nie spełnia podanych kryteriów 🤔
+                                        </h1>
                                     </div>
-                                </Link>
-                            )) : <div className="col-span-3 text-center">
-                                <h1>
-                                    Żaden produkt nie spełnia podanych kryteriów 🤔
-                                </h1>
-                            </div>
-                    }
+                            }
+                    <div className="col-span-4">
+                        <Pagination count={noOfPages} page={page} onChange={handleChange}
+                                    disabled={noOfPages === 0 || noOfPages === 1 }
+                                    defaultPage={1} siblingCount={1}
+                                    variant="outlined" shape="rounded" className="float-right"/>
+                    </div>
                 </div>
             </div>
         </div>
