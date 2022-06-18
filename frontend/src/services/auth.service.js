@@ -1,4 +1,6 @@
 import axios from "axios";
+import authToken from "./auth-token";
+import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8080/api/auth/";
 
@@ -22,6 +24,7 @@ const login = (username, password) => {
 };
 
 const logout = () => {
+    axios.post(API_URL + "logout", {token: authToken().token}, {headers: authHeader()});
     localStorage.removeItem("user");
 };
 

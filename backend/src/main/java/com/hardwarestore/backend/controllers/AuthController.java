@@ -1,19 +1,25 @@
 package com.hardwarestore.backend.controllers;
 
 import com.hardwarestore.backend.exception.ResourceNotFoundException;
+import com.hardwarestore.backend.models.BlackListJwt;
 import com.hardwarestore.backend.models.ERole;
 import com.hardwarestore.backend.models.Role;
 import com.hardwarestore.backend.models.User;
 import com.hardwarestore.backend.payload.request.LoginRequest;
+import com.hardwarestore.backend.payload.request.LogoutRequest;
 import com.hardwarestore.backend.payload.request.SignupRequest;
 import com.hardwarestore.backend.payload.response.JwtResponse;
 import com.hardwarestore.backend.payload.response.MessageResponse;
+import com.hardwarestore.backend.repository.BlackListJwtRepository;
 import com.hardwarestore.backend.repository.RoleRepository;
 import com.hardwarestore.backend.repository.UserRepository;
 import com.hardwarestore.backend.security.jwt.JwtUtils;
 import com.hardwarestore.backend.security.services.UserDetailsImpl;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -42,6 +48,9 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @Autowired
+    private BlackListJwtRepository blackListJwtRepository;
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         User user = userRepository.findByUsername(loginRequest.getUsername())
@@ -49,7 +58,7 @@ public class AuthController {
         if (!user.getIsAccountNonLocked()) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: This account is locked!"));
+                    .body(new MessageResponse("Twoje konto jest zablokowane!"));
         }
 
         Authentication authentication = authenticationManager.authenticate(
@@ -113,5 +122,14 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    @PostMapping("/logout")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
+    public ResponseEntity<Void> logout(@Valid @RequestBody LogoutRequest logoutRequest) {
+        BlackListJwt blackListJwt = new BlackListJwt(logoutRequest.getToken());
+        blackListJwtRepository.save(blackListJwt);
+        return ResponseEntity.ok(null);
     }
 }
