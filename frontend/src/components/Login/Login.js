@@ -63,9 +63,24 @@ const Login = () => {
     function handleCallbackResponse(response) {
         console.log("Encoded JWT ID token: " + response.credential);
         let userObject = jwt_decode(response.credential);
-        console.log(userObject);
         setUser(userObject);
-        localStorage.setItem("user", JSON.stringify(userObject));
+        // login/register google secret:0rXjNJ0wm31u4zCNGqQnJlchgfbL17Uc
+        AuthService.google(userObject.email, userObject.given_name, '0rXjNJ0wm31u4zCNGqQnJlchgfbL17Uc',  userObject.family_name).then(
+            () => {
+                navigate("/mojekonto");
+                window.location.reload();
+            },
+            (error) => {
+                const resMessage =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+                setLoading(false);
+                setMessage(resMessage);
+            }
+        );
     }
 
     function handleSignOut(event) {
@@ -76,7 +91,7 @@ const Login = () => {
     useEffect(() => {
         /* global google */
         google.accounts.id.initialize({
-            client_id: "5911628702-3ab4jj6u6rih7m733mufb0dv4cikfovi.apps.googleusercontent.com",
+            client_id: "5911628702-kb9sd18tvhv0oisuklscs4efjhka7qra.apps.googleusercontent.com",
             callback: handleCallbackResponse
         });
 
@@ -88,7 +103,6 @@ const Login = () => {
         google.accounts.id.prompt();
     }, []);
 
-    console.log(user);
 
     return (
         <div className="flex justify-center mt-16">

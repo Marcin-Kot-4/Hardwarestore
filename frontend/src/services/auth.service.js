@@ -23,6 +23,19 @@ const login = (username, password) => {
         });
 };
 
+const google = (email, name, secret, surname) => {
+    return axios
+        .post(API_URL + "google", {
+            email, name, secret, surname
+        })
+        .then((response) => {
+            if (response.data.accessToken) {
+                localStorage.setItem("user", JSON.stringify(response.data));
+            }
+            return response.data;
+        });
+}
+
 const logout = () => {
     axios.post(API_URL + "logout", {token: authToken().token}, {headers: authHeader()});
     localStorage.removeItem("user");
@@ -33,7 +46,7 @@ const getCurrentUser = () => {
 };
 
 const AuthService = {
-    register, login, logout, getCurrentUser,
+    register, login, google, logout, getCurrentUser,
 };
 
 export default AuthService;

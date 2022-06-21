@@ -18,7 +18,7 @@ const ProfileNavigation = (props) => {
             {
                 currentUser.roles.includes('ROLE_ADMIN') ?
                     <>
-                        <h1 className="text-xl font-medium mb-4">{currentUser.username} (administrator)</h1>
+                        <h1 className="text-xl font-medium mb-4">{currentUser.name} (administrator)</h1>
                         <Link to="/mojekonto/listauzytkownikow">
                             <h1 className={props.styleBold === 'usersList' ? boldStyle : normalStyle }>Lista
                                 użytkowników
@@ -34,7 +34,7 @@ const ProfileNavigation = (props) => {
                         </Link>
                     </>
                     :
-                    <h1 className="text-xl font-medium mb-4">{currentUser.username}</h1>
+                    <h1 className="text-xl font-medium mb-4">{currentUser.name}</h1>
             }
             <Link to="/mojekonto/zamowienia">
                 <h1 className={props.styleBold === 'orders' ? boldStyle : normalStyle }>Zamówienia</h1>

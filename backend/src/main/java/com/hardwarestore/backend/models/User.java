@@ -21,7 +21,6 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(max = 20)
     private String username;
 
     @NotBlank
@@ -29,7 +28,6 @@ public class User {
     @Email
     private String email;
 
-    @NotBlank
     @Size(max = 120)
     private String password;
 
@@ -41,27 +39,24 @@ public class User {
     @Size(max = 50)
     private String surname;
 
-    @NotBlank
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-    @NotBlank
     private String street;
 
-    @NotBlank
     @Column(name = "house_number")
     private String houseNumber;
 
-    @NotBlank
     @Column(name = "postal_code")
     private String postalCode;
 
-    @NotBlank
     private String city;
 
-    @NotBlank
     @Column(name = "is_account_non_locked")
     private Boolean isAccountNonLocked;
+
+    @Column
+    private String provider;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
