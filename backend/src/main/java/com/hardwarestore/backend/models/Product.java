@@ -1,5 +1,6 @@
 package com.hardwarestore.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,11 +56,12 @@ public class Product {
             CascadeType.MERGE
     })
     @JoinTable(name = "product_sub_categories",
-    joinColumns = {@JoinColumn(name = "product_id")},
-    inverseJoinColumns = {@JoinColumn(name = "sub_category_id")})
+                joinColumns = {@JoinColumn(name = "product_id")},
+                inverseJoinColumns = {@JoinColumn(name = "sub_category_id")})
     private Set<SubCategory> subCategories = new HashSet<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Set<UserProduct> userProducts = new HashSet<>();
 
     public void addProduct(UserProduct product) {

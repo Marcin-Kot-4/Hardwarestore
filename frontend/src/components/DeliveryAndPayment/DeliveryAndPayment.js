@@ -1,36 +1,10 @@
 import React, {useEffect} from 'react';
 import {useState} from "react";
 import PayPal from "../PayPal/PayPal";
+import AuthService from "../../services/auth.service";
 
 
 const DeliveryAndPayment = () => {
-    const cart = [
-        {
-            productName: 'Dysk SSD Samsung 870 QVO 1 TB 2.5" SATA III',
-            price: 425,
-            image: 'https://images.morele.net/i256/5943414_1_i256.jpg'
-        },
-        {
-            productName: 'Pamięć GoodRam IRDM X, DDR4, 8 GB, 3200MHz, CL16',
-            price: 159.99,
-            image: 'https://images.morele.net/i256/8299663_0_i256.jpg'
-        },
-        {
-            productName: 'Płyta główna Gigabyte B450 AORUS PRO',
-            price: 409,
-            image: 'https://images.morele.net/i256/4671394_0_i256.jpg'
-        },
-        {
-            productName: 'Monitor LG UltraGear 27GP850-B',
-            price: 1797.99,
-            image: 'https://images.morele.net/i256/5947874_0_i256.jpg'
-        },
-        {
-            productName: 'Obudowa be quiet! Pure Base 500DX',
-            price: 499,
-            image: 'https://images.morele.net/i256/6726194_0_i256.jpg'
-        }
-    ]
 
     const [deliveryRadio1, setDeliveryRadio1] = useState('radio-button-on-outline');
     const [deliveryRadio2, setDeliveryRadio2] = useState('radio-button-off-outline');
@@ -42,9 +16,6 @@ const DeliveryAndPayment = () => {
 
     const [deliveryPrice, setDeliveryPrice] = useState(20);
     const [paymentPrice, setPaymentPrice] = useState(0);
-    const [totalAmount, setTotalAmount] = useState(cart.reduce((accumulator, object) => {
-        return accumulator + object.price;
-    }, deliveryPrice + paymentPrice).toFixed(2));
 
     function onClickHandlerDelivery(radioNumber, newDeliveryPrice) {
         setDeliveryRadio1('radio-button-off-outline');
@@ -63,13 +34,32 @@ const DeliveryAndPayment = () => {
 
     }
 
+    const [cart, setCart] = useState([]);
+
+    const user = AuthService.getCurrentUser();
+
     useEffect(() => {
-        setTotalAmount(cart.reduce((accumulator, object) => {
-            return accumulator + object.price;
-        }, deliveryPrice + paymentPrice));
-    },[deliveryPrice, paymentPrice]);
+        fetch("http://localhost:8080/api/cart/" + user.id)
+            .then(response => response.json())
+            .then((result) => {
+                    setCart(result);
+                }
+            )
+    }, [])
+
+    const [totalAmount, setTotalAmount] = useState(cart.reduce((accumulator, object) => {
+        return accumulator + object.price;
+    }, deliveryPrice + paymentPrice).toFixed(2));
+
+    useEffect(() => {
+        let _totalAmount = parseInt(cart.reduce((accumulator, object) => {return accumulator + object.product.price * object.quantity;}, 0))
+            + deliveryPrice + paymentPrice;
+        _totalAmount = _totalAmount.toFixed(2);
+        setTotalAmount(_totalAmount);
+    },[cart, deliveryPrice, paymentPrice]);
 
     const [checkOut, setCheckOut] = useState(false);
+
 
     return (
         <div>

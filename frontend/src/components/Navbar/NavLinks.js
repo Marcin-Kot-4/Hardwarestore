@@ -38,10 +38,10 @@ const NavLinks = () => {
                                         <div className="bg-m_gray p-5 grid grid-cols-3 gap-10">
                                             {
                                                 mainCategory.categories.map((category) => (
-                                                    <div>
+                                                    <div key={category.id}>
                                                         <h1 className="font-normal">{category.name}</h1>
                                                         {category.subCategories.map(subCategory => (
-                                                            <li className="text-sm text-gray-600 my-2.5">
+                                                            <li key={subCategory.id} className="text-sm text-gray-600 my-2.5">
                                                                 <Link to={subCategory.link}
                                                                       className="hover:text-primary">{subCategory.name}</Link>
                                                             </li>
