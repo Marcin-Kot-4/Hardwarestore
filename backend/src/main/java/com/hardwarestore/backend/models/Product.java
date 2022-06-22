@@ -44,13 +44,16 @@ public class Product {
     @Column(name = "other_technical_details", nullable = false)
     private String otherTechnicalDetails;
 
+    @Column(name = "producer")
+    private String producer;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Description> descriptions = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
     cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE

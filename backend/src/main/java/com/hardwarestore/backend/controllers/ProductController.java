@@ -86,9 +86,4 @@ public class ProductController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-//    @GetMapping("/products/{name}")
-//    public ResponseEntity<List<Product>> findByName(@PathVariable("name") String name) {
-//        List<Product> products = productRepository.findByNameContaining(name)
-//    }
 }

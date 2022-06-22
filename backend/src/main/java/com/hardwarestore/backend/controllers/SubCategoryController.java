@@ -39,23 +39,34 @@ public class SubCategoryController {
     @GetMapping("/products/{productId}/subCategories")
     public ResponseEntity<List<SubCategory>> getAllSubCategoriesByProductId(@PathVariable(value = "productId") Long productId) {
         if (!productRepository.existsById(productId)) {
-            throw new ResourceNotFoundException("Not found Product with id = " + productId);
+            throw new ResourceNotFoundException("Nie znaleziono produktu o id = " + productId);
         }
         List<SubCategory> subCategories = subCategoryRepository.findSubCategoriesByProductsId(productId);
         return new ResponseEntity<>(subCategories, HttpStatus.OK);
     }
 
+    @PostMapping("/subCategoryByLink")
+    public ResponseEntity<SubCategory> getSubCategoryByLink(@RequestBody String subCategoryRequest) {
+        String link = subCategoryRequest.replaceAll("%2F", "/");
+        link = link.replaceAll("=", "");
+        final String _link = link;
+
+        SubCategory subCategory = subCategoryRepository.findSubCategoryByLink(link)
+                .orElseThrow(() -> new ResourceNotFoundException("Nie znaleziono subCategory o linku = " + _link));
+        return new ResponseEntity<>(subCategory, HttpStatus.OK);
+    }
+
     @GetMapping("/subCategories/{id}")
     public ResponseEntity<SubCategory> getSubCategoryById(@PathVariable(value = "id") Long id) {
         SubCategory subCategory = subCategoryRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found SubCategory with id = " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Nie znaleziono subCategory o id = " + id));
         return new ResponseEntity<>(subCategory, HttpStatus.OK);
     }
 
     @GetMapping("/subCategories/{subCategoryId}/products")
     public ResponseEntity<List<Product>> getAllProductsBySubCategoryId(@PathVariable(value = "subCategoryId") Long subCategoryId) {
         if (!subCategoryRepository.existsById(subCategoryId)) {
-            throw new ResourceNotFoundException("Not found SubCategory with id = " + subCategoryId);
+            throw new ResourceNotFoundException("Nie znaleziono subCategory o id = " + subCategoryId);
         }
         List<Product> products = productRepository.findProductsBySubCategoriesId(subCategoryId);
         return new ResponseEntity<>(products, HttpStatus.OK);
@@ -71,7 +82,7 @@ public class SubCategoryController {
             // SubCategory exists
             if (subCategoryId != 0L) {
                 SubCategory _subCategory = subCategoryRepository.findById(subCategoryId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Not found SubCategory with id = " + subCategoryId));
+                        .orElseThrow(() -> new ResourceNotFoundException("Nie znaleziono subCategory o id = " + subCategoryId));
                 product.addSubCategory(_subCategory);
                 productRepository.save(product);
                 return _subCategory;
@@ -80,7 +91,7 @@ public class SubCategoryController {
             // add SubCategory
             product.addSubCategory(subCategoryRequest);
             return subCategoryRepository.save(subCategoryRequest);
-        }).orElseThrow(() -> new ResourceNotFoundException("Not found Product with id = " + productId));
+        }).orElseThrow(() -> new ResourceNotFoundException("Nie znaleziono produktu o id = " + productId));
         return new ResponseEntity<>(subCategory, HttpStatus.CREATED);
     }
 
@@ -101,7 +112,7 @@ public class SubCategoryController {
     public ResponseEntity<HttpStatus> deleteSubCategoryFromProduct(@PathVariable(value = "productId") Long productId,
                                                                    @PathVariable(value = "subCategoryId") Long subCategoryId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found Product with id = " + productId));
+                .orElseThrow(() -> new ResourceNotFoundException("Nie znaleziono produktu o id = " + productId));
 
         product.removeSubCategory(subCategoryId);
         productRepository.save(product);

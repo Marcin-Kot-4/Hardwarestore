@@ -2,11 +2,9 @@ import React, {useEffect} from 'react';
 import TrashIcon from "../TrashIcon";
 import SmallTrashIcon from "../SmallTrashIcon";
 import {Link} from "react-router-dom";
-import CartService from "../../services/cart.service";
 import {useState} from "react";
 import AuthService from "../../services/auth.service";
 import axios from "axios";
-import authToken from "../../services/auth-token";
 import authHeader from "../../services/auth-header";
 
 const Cart = () => {

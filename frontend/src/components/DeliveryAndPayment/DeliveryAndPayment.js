@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useState} from "react";
 import PayPal from "../PayPal/PayPal";
 import AuthService from "../../services/auth.service";
+import authHeader from "../../services/auth-header";
 
 
 const DeliveryAndPayment = () => {
@@ -39,7 +40,7 @@ const DeliveryAndPayment = () => {
     const user = AuthService.getCurrentUser();
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/cart/" + user.id)
+        fetch("http://localhost:8080/api/cart/" + user.id, {headers: authHeader()})
             .then(response => response.json())
             .then((result) => {
                     setCart(result);

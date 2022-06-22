@@ -29,7 +29,7 @@ public class SubCategory {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
     cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
