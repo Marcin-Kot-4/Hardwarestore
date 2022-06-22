@@ -56,6 +56,11 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         User user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new ResourceNotFoundException("Niepoprawna nazwa użytkownika lub hasło!"));
+        if (loginRequest.getPassword().equals("")) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Podaj hasło!"));
+        }
         if (!user.getIsAccountNonLocked()) {
             return ResponseEntity
                     .badRequest()

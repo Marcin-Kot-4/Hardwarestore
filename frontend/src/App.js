@@ -17,6 +17,9 @@ import Profile from "./components/Profile/Profile";
 import Reviews from "./components/Reviews/Reviews";
 import UsersList from "./components/UsersList/UsersList";
 import Help from "./components/Help/Help";
+import AddProduct from "./components/AddProduct/AddProduct";
+import AccountSettings from "./components/AccountSettings/AccountSettings";
+import AllProducts from "./components/AllProducts/AllProducts";
 
 
 function App() {
@@ -29,7 +32,6 @@ function App() {
                 <Route path="/" element={<><Slider/><CardSlider/><Newsletter/></>}/>
                 <Route path="/login" element={<><Login/><Newsletter/></>}/>
                 <Route path="/rejestracja" element={<Register/>}/>
-                <Route path="/:categoryName/:subCategoryName" element={<><Products/><Newsletter/></>}/>
                 <Route path="/produkt/:product" element={<><ProductDetails/><Newsletter/></>}/>
                 <Route path="/koszyk" element={<><Cart/><Newsletter/></>}/>
                 <Route path="/dostawaiplatnosc" element={<><DeliveryAndPayment/><Newsletter/></>}/>
@@ -37,7 +39,11 @@ function App() {
                 <Route path="/mojekonto/zamowienia" element={<Profile styleBold={'orders'}/>}/>
                 <Route path="/mojekonto/opinie" element={<Reviews styleBold={'reviews'}/>}/>
                 <Route path="/mojekonto/listauzytkownikow" element={<UsersList styleBold={'usersList'}/>}/>
+                <Route path="/mojekonto/dodajprodukt" element={<AddProduct styleBold={'addProduct'}/>}/>
+                <Route path="/mojekonto/ustawieniakonta" element={<AccountSettings styleBold={'accountSettings'}/>}/>
+                <Route path="/mojekonto/produkty" element={<AllProducts styleBold={'allProducts'}/>}/>
                 <Route path="/jakkupowac" element={<Help/>}/>
+                <Route path="/:categoryName/:subCategoryName" element={<><Products/><Newsletter/></>}/>
 
 
 

@@ -1,5 +1,6 @@
 package com.hardwarestore.backend.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email")})
 @Getter
 @Setter
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +44,7 @@ public class User {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
+    @Column
     private String street;
 
     @Column(name = "house_number")
@@ -61,6 +64,25 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<UserProduct> userProducts = new HashSet<>();
+
+    public void addProduct(UserProduct product) {
+        this.userProducts.add(product);
+    }
+
+    public Set<UserProduct> getUserProducts() {
+        return userProducts;
+    }
+
+    public void setUserProducts(Set<UserProduct> userProducts) {
+        this.userProducts = userProducts;
+    }
+
+    public void addUserProduct(UserProduct userProduct) {
+        this.userProducts.add(userProduct);
+    }
 
     public User() {
     }

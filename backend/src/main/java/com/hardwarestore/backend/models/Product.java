@@ -1,5 +1,6 @@
 package com.hardwarestore.backend.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ import java.util.Set;
 @Table(name = "products")
 @Getter
 @Setter
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -57,7 +59,24 @@ public class Product {
     inverseJoinColumns = {@JoinColumn(name = "sub_category_id")})
     private Set<SubCategory> subCategories = new HashSet<>();
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Set<UserProduct> userProducts = new HashSet<>();
 
+    public void addProduct(UserProduct product) {
+        this.userProducts.add(product);
+    }
+
+    public Set<UserProduct> getUserProducts() {
+        return userProducts;
+    }
+
+    public void setUserProducts(Set<UserProduct> userProducts) {
+        this.userProducts = userProducts;
+    }
+
+    public void addUserProduct(UserProduct userProduct) {
+        this.userProducts.add(userProduct);
+    }
 
     public Product(){
     }

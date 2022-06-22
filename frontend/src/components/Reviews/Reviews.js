@@ -1,5 +1,6 @@
-import React from 'react';
+import React,  {useEffect, useState} from 'react';
 import ProfileNavigation from "../Profile/ProfileNavigation";
+import {Pagination} from "@mui/material";
 
 const Reviews = (props) => {
     const formatter = new Intl.DateTimeFormat('pl', {
@@ -53,8 +54,33 @@ const Reviews = (props) => {
             status: 'Zakończone',
             date: new Date(2022, 1, 8),
             options: [],
+        },
+        {
+            id: 7000041241230,
+            productName: 'Monitor LG UltraGear 27GP850-B',
+            price: 1797.99,
+            image: 'https://images.morele.net/i256/5947874_0_i256.jpg',
+            status: 'Opłacone',
+            date: new Date(2022, 0, 20),
+            options: [],
         }
     ]
+
+    let [page, setPage] = useState(1);
+    const LIMIT_FOR_PAGE = 5;
+
+    const [noOfPages, setNoOfPages] = React.useState(
+        Math.ceil(orders.length / LIMIT_FOR_PAGE)
+    );
+
+    const handleChange = (event, value) => {
+        setPage(value);
+    };
+
+    useEffect(() => {
+        setNoOfPages(Math.ceil(orders.length / LIMIT_FOR_PAGE));
+        //setPage(1);
+    }, [orders])
 
     return (
         <div className="flex justify-center font-[Roboto] my-16">
@@ -66,7 +92,7 @@ const Reviews = (props) => {
                     <h1 className="text-2xl font-bold inline">Opinie</h1>
                     <div className="mt-6">
                         {
-                            orders.map((c) => (
+                            orders.slice((page - 1) * LIMIT_FOR_PAGE, page * LIMIT_FOR_PAGE).map((c) => (
                                 <div className="w-full h-36 border-2 border-gray-100 mb-3">
                                     <div className="inline-block w-full">
                                         <img className="inline-block w-24 h-24 object-contain ml-8" src={c.image}
@@ -82,22 +108,12 @@ const Reviews = (props) => {
                                 </div>
                             ))
                         }
-                    </div>
-                    <div className="float-right mt-4">
-                        <span className="bg-m_gray px-3 pt-3 pb-1 text-lg text-gray-300 mr-1">
-                            <ion-icon name="chevron-back"></ion-icon>
-                        </span>
-                        <span className="border-black border pl-[15px] pr-[11px] pt-3 pb-1 text-lg mr-1 cursor-pointer">
-                            <span className="pr-1 align-text-bottom font-light">1</span>
-                        </span>
-                        <span
-                            className="border-m_gray border pl-[15px] pr-[11px] pt-3 pb-1 text-lg mr-1 cursor-pointer">
-                            <span className="pr-1 align-text-bottom font-light">2</span>
-                        </span>
-                        <span className="bg-m_gray px-3 pt-3 pb-1 text-lg cursor-pointer">
-                            <span className="pr-1 align-text-bottom font-light">Następna</span>
-                            <ion-icon name="chevron-forward"></ion-icon>
-                        </span>
+                        <div className=" col-span-3">
+                            <Pagination count={noOfPages} page={page} onChange={handleChange}
+                                        disabled={noOfPages === 0 || noOfPages === 1}
+                                        defaultPage={1} siblingCount={1}
+                                        variant="outlined" shape="rounded" className="float-right"/>
+                        </div>
                     </div>
                 </div>
             </div>

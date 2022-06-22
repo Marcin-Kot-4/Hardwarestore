@@ -101,7 +101,7 @@ const Login = () => {
         )
 
         google.accounts.id.prompt();
-    }, []);
+    }, );
 
 
     return (

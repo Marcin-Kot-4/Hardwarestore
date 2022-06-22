@@ -37,7 +37,7 @@ public class ReviewController {
     @GetMapping("/reviews/products/{productId}")
     public ResponseEntity<List<Review>> getAllReviewsByProductId(@PathVariable(value = "productId") Long productId) {
         if (!productRepository.existsById(productId)) {
-            throw new ResourceNotFoundException("Not found Product with id = " + productId);
+            throw new ResourceNotFoundException("Nie znaleziono produktu o id = " + productId);
         }
         List<Review> reviews = reviewRepository.findReviewsByProductId(productId);
         return new ResponseEntity<>(reviews, HttpStatus.OK);
@@ -46,23 +46,23 @@ public class ReviewController {
     @GetMapping("/reviews/users/{userId}")
     public ResponseEntity<List<Review>> getAllReviewsByUserId(@PathVariable(value = "userId") Long userId) {
         if (!userRepository.existsById(userId)) {
-            throw new ResourceNotFoundException("Not found User with id = " + userId);
+            throw new ResourceNotFoundException("Nie znaleziono użytkownika o id = " + userId);
         }
         List<Review> reviews = reviewRepository.findReviewsByUserId(userId);
         return new ResponseEntity<>(reviews, HttpStatus.OK);
     }
 
     @PostMapping("/reviews/{productId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
     public ResponseEntity<Review> createReview(@PathVariable(value = "productId") Long productId, @RequestBody Review review) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found Product with id = " + productId));
+                .orElseThrow(() -> new ResourceNotFoundException("Nie znaleziono produktu o id = " + productId));
 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         String username = loggedInUser.getName();
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found User with username = " + username));
+                .orElseThrow(() -> new ResourceNotFoundException("Nie znaleziono użytkownika o nazwie = " + username));
 
 
         final long timeAtLocal = System.currentTimeMillis();

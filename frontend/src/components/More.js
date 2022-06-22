@@ -1,17 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import {useState} from "react";
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Popover from '@mui/material/Popover';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
 const More = (props) => {
     const [icon, setIcon] = useState('ellipsis-vertical-outline');
-    const [classToggle, setClassToggle] = useState('hidden');
-
-    function onClickHandle() {
-        if (classToggle === 'hidden')
-            setClassToggle('block');
-        else
-            setClassToggle('hidden');
-    }
-
+    const [classToggle, setClassToggle] = useState('active');
     function dropDown() {
         if (props.options.length === 1) {
             return (
@@ -30,17 +26,33 @@ const More = (props) => {
         }
     }
 
-    return (<>
-        <span className="float-right text-3xl mt-1 mr-1 hover:bg-n_gray pt-2 px-2 hover:cursor-pointer"
-              onMouseEnter={() => setIcon('ellipsis-vertical')}
-              onMouseLeave={() => setIcon('ellipsis-vertical-outline')}
-              onClick={onClickHandle}>
-            <ion-icon name={icon}></ion-icon>
-        </span>
-        <div className="shadow-md float-right mt-12 text-center">
-            {dropDown()}
-        </div>
-    </>);
+    return (
+        <PopupState variant="popover">
+            {(popupState) => (
+                <div>
+                    <Button className="float-right mt-1 mr-1 hover:cursor-pointer" {...bindTrigger(popupState)}>
+                        <ion-icon size="large" color="dark"  name={icon}></ion-icon>
+                    </Button>
+                    <Popover
+                        {...bindPopover(popupState)}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        style={{boxShadow: "none"}}
+                        elevation={2}
+                    >
+                        <Typography>{dropDown()}</Typography>
+                    </Popover>
+                </div>
+            )}
+        </PopupState>
+
+    );
 };
 
 export default More;
