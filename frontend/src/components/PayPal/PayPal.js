@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import axios from "axios";
 import AuthService from "../../services/auth.service";
+import {useNavigate} from "react-router-dom";
 
 const PayPal = (props) => {
     const user = AuthService.getCurrentUser();
@@ -14,6 +15,8 @@ const PayPal = (props) => {
     const userId = user.id;
 
     const paypal = useRef();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (window.paypalButtons) {
@@ -46,6 +49,7 @@ const PayPal = (props) => {
                         if (response.data) {
                             console.log(response.data);
                             console.log('git majonez');
+                            navigate("/mojekonto");
                         }
                     });
             },

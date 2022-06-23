@@ -73,7 +73,7 @@ const DeliveryAndPayment = () => {
 
     const navigate = useNavigate();
 
-    function handleCheckout() {
+    const handleCheckout = () => {
         if (paymentMethod === 'Płatność online') {
             return payPal;
         } else {

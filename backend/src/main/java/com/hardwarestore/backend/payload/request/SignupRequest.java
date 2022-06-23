@@ -30,7 +30,6 @@ public class SignupRequest {
     @Size(max = 50)
     private String surname;
 
-    @NotBlank
     private Date dateOfBirth;
 
     @NotBlank
