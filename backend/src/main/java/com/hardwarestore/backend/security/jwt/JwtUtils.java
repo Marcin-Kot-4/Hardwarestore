@@ -20,21 +20,32 @@ public class JwtUtils {
     @Value("${hardwarestore.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
-    public String generateJwtToken(Authentication authentication) {
+    public String generateJwtToken(Authentication authentication, Boolean rememberMe) {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
-                .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
-                .compact();
+        if (rememberMe) {
+            return Jwts.builder()
+                    .setSubject((userPrincipal.getUsername()))
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                    .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                    .compact();
+        } else {
+            return Jwts.builder()
+                    .setSubject((userPrincipal.getUsername()))
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date((new Date()).getTime() + 21600000))
+                    .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                    .compact();
+        }
     }
 
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
+
+
 
     public String getJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).toString();

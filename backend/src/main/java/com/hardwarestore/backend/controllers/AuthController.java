@@ -70,7 +70,7 @@ public class AuthController {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication, loginRequest.getRememberMe());
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
@@ -153,7 +153,7 @@ public class AuthController {
                 Authentication authentication = authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(googleRequest.getEmail(), ""));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                String jwt = jwtUtils.generateJwtToken(authentication);
+                String jwt = jwtUtils.generateJwtToken(authentication, false);
 
                 UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
                 List<String> roles = userDetails.getAuthorities().stream()
@@ -202,7 +202,7 @@ public class AuthController {
                 Authentication authentication = authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(googleRequest.getEmail(), ""));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                String jwt = jwtUtils.generateJwtToken(authentication);
+                String jwt = jwtUtils.generateJwtToken(authentication, false);
 
                 UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
                 List<String> _roles = userDetails.getAuthorities().stream()
