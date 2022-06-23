@@ -24,6 +24,15 @@ const More = (props) => {
                 </span>
             );
         }
+        if (props.options.length === 3) {
+            return (
+                <span className={classToggle}>
+                    <h1 className="text-sm border-2 border-m_gray p-2">{props.options[0]}</h1>
+                    <h1 className="text-sm border-x-2 border-b-2 border-m_gray p-2">{props.options[1]}</h1>
+                     <h1 className="text-sm border-x-2 border-b-2 border-m_gray p-2">{props.options[2]}</h1>
+                </span>
+            );
+        }
     }
 
     return (

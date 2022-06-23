@@ -7,9 +7,9 @@ const PayPal = (props) => {
 
     const deliveryCost = props.deliveryCost;
     const paymentCost = props.paymentCost;
-    const deliveryMethod = 'Kurier - Poczta Polska';
-    const paymentMethod = 'Płatność online';
-    const paymentStatus = 'Zrealizowano';
+    const deliveryMethod = props.deliveryMethod;
+    const paymentMethod = props.paymentMethod;
+    const paymentStatus = props.paymentStatus;
     const totalAmount = props.totalAmount;
     const userId = user.id;
 

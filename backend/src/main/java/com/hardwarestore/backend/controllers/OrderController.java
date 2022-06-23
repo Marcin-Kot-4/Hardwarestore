@@ -56,4 +56,10 @@ public class OrderController {
         return new ResponseEntity<>(_order, HttpStatus.CREATED);
     }
 
+    @GetMapping("/orders/{userId}")
+    public ResponseEntity<List<Order>> getOrders(@PathVariable("userId") Long userId){
+        List<Order> orders = orderRepository.findAllOrdersByUserId(userId);
+        return new ResponseEntity(orders , HttpStatus.OK);
+    }
+
 }
