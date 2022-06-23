@@ -68,7 +68,7 @@ const DeliveryAndPayment = () => {
                 checkOut ?
                     (
                         <div className="flex justify-center my-16">
-                            <PayPal totalAmount={totalAmount}/>
+                            <PayPal totalAmount={totalAmount} deliveryCost={deliveryPrice} paymentCost={paymentPrice}/>
                         </div>
                     )
                     :

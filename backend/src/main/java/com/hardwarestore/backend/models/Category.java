@@ -21,6 +21,7 @@ public class Category {
     @Column(nullable = false)
     private String name;
 
+    // JSON IGNORE -----------------------------------------------------------------------------------------------------
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "main_category_id")
